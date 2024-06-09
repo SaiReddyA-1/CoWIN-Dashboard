@@ -1,10 +1,15 @@
-In this project, let's build a **CoWIN Dashboard** by applying the concepts we have learned till now.
+```markdown
+# CoWIN Dashboard
 
-### Refer to the images below:
+In this project, I have built a **CoWIN Dashboard** by applying various concepts.
+
+### Screenshots:
+
+**Success View**
 
 <br/>
 <div style="text-align: center;">
-    <img src="https://assets.ccbp.in/frontend/content/react-js/cowin-dashbaord-output.gif" alt="" style="max-width:70%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
+    <img src="https://assets.ccbp.in/frontend/content/react-js/cowin-dashbaord-output.gif" alt="cowin-dashboard-success-view" style="max-width:70%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
 </div>
 <br/>
 
@@ -12,7 +17,7 @@ In this project, let's build a **CoWIN Dashboard** by applying the concepts we h
 
 <br/>
 <div style="text-align: center;">
-    <img src="https://assets.ccbp.in/frontend/content/react-js/cowin-dashbaord-failure-view-output.gif" alt="cowin-dashboard-failure-view-output" style="max-width:70%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
+    <img src="https://assets.ccbp.in/frontend/content/react-js/cowin-dashbaord-failure-view-output.gif" alt="cowin-dashboard-failure-view" style="max-width:70%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
 </div>
 <br/>
 
@@ -26,49 +31,26 @@ In this project, let's build a **CoWIN Dashboard** by applying the concepts we h
 
 </details>
 
-### Set Up Instructions
+### Implementation Details
 
-<details>
-<summary>Click to view</summary>
+The app has the following functionalities:
 
-- Download dependencies by running `npm install`
-- Start up the app using `npm start`
-</details>
+- On page load, an HTTP GET request is made to **covidVaccinationDataApiUrl**.
+- A **loader** is displayed while the HTTP request is fetching the data.
+- After successful data fetch, the response is displayed using different charts from `recharts`.
+  - Last 7 days vaccination data is displayed using the `BarChart` component.
+  - Vaccination data by gender and age are displayed using the `PieChart` component.
+- If the HTTP GET request fails, a **FailureView** is displayed.
 
-### Completion Instructions
-
-<details>
-<summary>Functionality to be added</summary>
-<br/>
-
-The app must have the following functionalities
-
-- When the page is opened,
-  - An HTTP GET request should be made to **covidVaccinationDataApiUrl**
-  - **_loader_** should be displayed while the HTTP request is fetching the data
-  - After the data is fetched successfully, the response received should be displayed using different charts from `recharts`
-  - The last 7 days vaccination data should be displayed using the `BarChart` component from `recharts`
-  - The data for vaccination by gender and vaccination by age should be displayed as two different pie charts using the `PieChart` component from `recharts`
-  - If the HTTP GET request made is unsuccessful, then the [FailureView](https://assets.ccbp.in/frontend/react-js/api-failure-view.png) should be displayed
-
-</details>
-
-<details>
-
-<summary>API Requests & Responses</summary>
-<br/>
+### API Requests & Responses
 
 **covidVaccinationDataApiUrl**
 
-#### API: `https://apis.ccbp.in/covid-vaccination-data`
+- **API:** `https://apis.ccbp.in/covid-vaccination-data`
+- **Method:** `GET`
+- **Description:** Returns a response containing the vaccination data.
 
-#### Method: `GET`
-
-#### Description:
-
-Returns a response containing the list of Products
-
-#### Success Response
+#### Success Response Example:
 
 ```json
 {
@@ -77,30 +59,24 @@ Returns a response containing the list of Products
       "vaccine_date": "30th Jul",
       "dose_1": 3757930,
       "dose_2": 1817805
-    },
-    ...
+    }
   ],
   "vaccination_by_age": [
     {
       "age": "18-44",
       "count": 482792375
-    },
-    ...
+    }
   ],
   "vaccination_by_gender": [
     {
       "count": 4809680,
       "gender": "Male"
-    },
-    ...
+    }
   ]
 }
 ```
 
-</details>
-
-<details>
-<summary>Components Structure</summary>
+### Components Structure
 
 <br/>
 <div style="text-align: center;">
@@ -108,13 +84,9 @@ Returns a response containing the list of Products
 </div>
 <br/>
 
-</details>
+### Implementation Files
 
-<details>
-<summary>Implementation Files</summary>
-<br/>
-
-Use these files to complete the implementation:
+Use these files for reference:
 
 - `src/components/CowinDashboard/index.js`
 - `src/components/CowinDashboard/index.css`
@@ -125,18 +97,11 @@ Use these files to complete the implementation:
 - `src/components/VaccinationByAge/index.js`
 - `src/components/VaccinationByAge/index.css`
 
-</details>
-
 ### Important Note
 
-<details>
-<summary>Click to view</summary>
+For the tests to pass, ensure the following:
 
-<br/>
-
-**The following instructions are required for the tests to pass**
-
-- Wrap the Loader component with an HTML container element and add the `data-testid` attribute value as `loader` to it
+- Wrap the Loader component with an HTML container element and add the `data-testid` attribute value as `loader`.
 
   ```jsx
   <div data-testid="loader">
@@ -144,47 +109,37 @@ Use these files to complete the implementation:
   </div>
   ```
 
-- Provide `width` and `height` to the respective chart component to make the charts visible on the page <br> For example:
+- Provide `width` and `height` to the respective chart component.
 
   ```jsx
   <BarChart width={1000} height={300} />
   ```
-
-  - Provide `width` and `height` as **number**
-
-  - Achieve this CoWIN Dashboard on desktop devices. You can try different charts provided by the `recharts` package with customized data
-
-</details>
 
 ### Resources
 
 <details>
 <summary>Image URLs</summary>
 
-- [https://assets.ccbp.in/frontend/react-js/api-failure-view.png](https://assets.ccbp.in/frontend/react-js/api-failure-view.png) alt should be **failure view**
-- [https://assets.ccbp.in/frontend/react-js/cowin-logo.png](https://assets.ccbp.in/frontend/react-js/cowin-logo.png) alt should be **website logo**
+- [Failure View](https://assets.ccbp.in/frontend/react-js/api-failure-view.png)
+- [Website Logo](https://assets.ccbp.in/frontend/react-js/cowin-logo.png)
 
 </details>
 
 <details>
 <summary>Colors</summary>
 
-<br/>
-
-<div style="background-color: #161625; width: 150px; padding: 10px; color: white">Hex: #161625</div>
-<div style="background-color: #2cc6c6; width: 150px; padding: 10px; color: black">Hex: #2cc6c6</div>
-<div style="background-color: #cbd5e1; width: 150px; padding: 10px; color: black">Hex: #cbd5e1</div>
-<div style="background-color: #ffffff; width: 150px; padding: 10px; color: black">Hex: #ffffff</div>
-<div style="background-color: #1c1c2b; width: 150px; padding: 10px; color: white">Hex: #1c1c2b</div>
-<div style="background-color: #2d87bb; width: 150px; padding: 10px; color: black">Hex: #2d87bb</div>
-<div style="background-color: #a3df9f; width: 150px; padding: 10px; color: black">Hex: #a3df9f</div>
-<div style="background-color: #64c2a6; width: 150px; padding: 10px; color: black">Hex: #64c2a6</div>
-<div style="background-color: #94a3b8; width: 150px; padding: 10px; color: black">Hex: #94a3b8</div>
-<div style="background-color: #f54394; width: 150px; padding: 10px; color: black">Hex: #f54394</div>
-<div style="background-color: #5a8dee; width: 150px; padding: 10px; color: black">Hex: #5a8dee</div>
-<div style="background-color: #2cc6c6; width: 150px; padding: 10px; color: black">Hex: #2cc6c6</div>
-<div style="background-color: #6c757d; width: 150px; padding: 10px; color: black">Hex: #6c757d</div>
-<div style="background-color: #5a8dee; width: 150px; padding: 10px; color: black">Hex: #5a8dee</div>
+- Hex: #161625
+- Hex: #2cc6c6
+- Hex: #cbd5e1
+- Hex: #ffffff
+- Hex: #1c1c2b
+- Hex: #2d87bb
+- Hex: #a3df9f
+- Hex: #64c2a6
+- Hex: #94a3b8
+- Hex: #f54394
+- Hex: #5a8dee
+- Hex: #6c757d
 
 </details>
 
@@ -194,10 +149,3 @@ Use these files to complete the implementation:
 - Roboto
 
 </details>
-
-> ### _Things to Keep in Mind_
->
-> - All components you implement should go in the `src/components` directory.
-> - Don't change the component folder names as those are the files being imported into the tests.
-> - **Do not remove the pre-filled code**.
-> - Want to quickly review some of the concepts you’ve been learning? Take a look at the Cheat Sheets.
